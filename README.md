@@ -19,7 +19,7 @@ This is a hybrid Next.js + Python app that uses Next.js as the frontend and Fast
 python -m venv env
 pip install -r requirements.txt
 python -m pip freeze > requirements.txt
-uvicorn app.app:app --reload
+uvicorn api.index:app --reload
 
 ```
 
