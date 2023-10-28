@@ -15,6 +15,14 @@ This is a hybrid Next.js + Python app that uses Next.js as the frontend and Fast
 
 ## How It Works
 
+```
+python -m venv env
+pip install -r requirements.txt
+python -m pip freeze > requirements.txt
+uvicorn app.app:app --reload
+
+```
+
 The Python/FastAPI server is mapped into to Next.js app under `/api/`.
 
 This is implemented using [`next.config.js` rewrites](https://github.com/digitros/nextjs-fastapi/blob/main/next.config.js) to map any request to `/api/:path*` to the FastAPI API, which is hosted in the `/api` folder.
