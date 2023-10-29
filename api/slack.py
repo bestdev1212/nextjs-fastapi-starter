@@ -21,4 +21,5 @@ def send_notification(data):
 
     # Send the POST request
     response = requests.post(webhook_url, data=message_json, headers={"Content-Type": "application/json"})
+    print('slack response')
     print(response.status_code, response.content)
