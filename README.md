@@ -23,6 +23,7 @@ uvicorn api.index:app --reload
 
 ```
 
+
 The Python/FastAPI server is mapped into to Next.js app under `/api/`.
 
 This is implemented using [`next.config.js` rewrites](https://github.com/digitros/nextjs-fastapi/blob/main/next.config.js) to map any request to `/api/:path*` to the FastAPI API, which is hosted in the `/api` folder.
