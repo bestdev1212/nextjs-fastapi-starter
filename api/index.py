@@ -66,7 +66,7 @@ app = FastAPI()
 #     print(freshBooksClient)
 @app.get("/api/python", response_class=HTMLResponse)
 def hello_world():
-    return "<html><button>ccc {}</button></html>".format(settings.redis_db)
+    return "<html><button>ddd {}</button></html>".format(settings.redis_db)
 
 @app.get("/api/set-up", response_class=HTMLResponse)
 def set_up():
