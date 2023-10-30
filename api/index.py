@@ -4,6 +4,7 @@ from fastapi.responses import HTMLResponse
 from api.setup import setup_controller
 from api.schema import WebhookVerify
 from api.verify import verify_controller, webhook_verify
+from api.config import settings
 import urllib.parse
 
 import time
@@ -65,7 +66,7 @@ app = FastAPI()
 #     print(freshBooksClient)
 @app.get("/api/python", response_class=HTMLResponse)
 def hello_world():
-    return "<html><button>ccc</button></html>"
+    return "<html><button>ccc {}</button></html>".format(settings.redis_db)
 
 @app.get("/api/setup", response_class=HTMLResponse)
 def set_up():
