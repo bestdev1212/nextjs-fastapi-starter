@@ -68,7 +68,7 @@ app = FastAPI()
 def hello_world():
     return "<html><button>ccc {}</button></html>".format(settings.redis_db)
 
-@app.get("/api/setup", response_class=HTMLResponse)
+@app.get("/api/set-up", response_class=HTMLResponse)
 def set_up():
     return setup_controller()
 
