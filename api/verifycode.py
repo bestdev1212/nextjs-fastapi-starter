@@ -25,6 +25,7 @@ def verify_controller(code, webhook=False):
             client_secret=settings.client_secret,
             redirect_uri=settings.redirect_uri
         )
+        print(settings.redirect_uri)
         token_response = freshBooksClient.get_access_token(code)
         access_token = token_response.access_token
         refresh_token = token_response.refresh_token
@@ -77,7 +78,7 @@ def verify_controller(code, webhook=False):
     # print(businesses)
     projects = []
     tracks = []
-    
+
     for i in range(len(businesses)):
         _projects =freshBooksClient.projects.list(business_id=businesses[i].business_id)
         _tracks = freshBooksClient.time_entries.list(business_id=businesses[i].business_id)

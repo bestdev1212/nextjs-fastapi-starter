@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 # from freshbooks import Client
 from api.setup import setup_controller
 from api.schema import WebhookVerify
-from api.verify import verify_controller, webhook_verify
+from api.verifycode import verify_controller, webhook_verify
 from api.config import settings
 import urllib.parse
 
@@ -73,7 +73,7 @@ def set_up():
     return setup_controller()
 
 
-@app.get("/api/verifycode", response_class=HTMLResponse)
+@app.get("/api/verify", response_class=HTMLResponse)
 def verify(code: str):
     return verify_controller(code)
 

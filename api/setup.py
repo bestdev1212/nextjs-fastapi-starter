@@ -15,6 +15,7 @@ def setup_controller():
     authorization_url = freshBooksClient.get_auth_request_url(
         scopes=['user:profile:read', 'user:projects:read', 'user:time_entries:read']
     )
+    print('-- setup --')
     print(authorization_url)
     # business_index = int(input("Which business do you want to use? ")) - 1
     body = """
