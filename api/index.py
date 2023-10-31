@@ -73,7 +73,7 @@ def set_up():
     return setup_controller()
 
 
-@app.get("/api/verify", response_class=HTMLResponse)
+@app.get("/api/verifycode", response_class=HTMLResponse)
 def verify(code: str):
     return verify_controller(code)
 
