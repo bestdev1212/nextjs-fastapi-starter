@@ -127,7 +127,6 @@ def verify_controller(code, webhook=False):
             res = requests.post(url, data=json.dumps(payload), headers=headers)
             print(res.json())
     print('--- slack message ---')
-    
     if not slack_message_empty:
         send_notification(slack_message)
     body = """
