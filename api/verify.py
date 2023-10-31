@@ -84,7 +84,8 @@ def verify_controller(code, webhook=False):
         tracks += _tracks.data["time_entries"]
 
     # print(tracks)
-    slack_message =""
+    slack_message ="---- FreshBooks Notification Start ---- \n"
+    slack_message_empty = True
     for i in range(len(projects)):
         project_id = projects[i]["id"]
         tracks_per_project = [track for track in tracks if track["project_id"] == project_id]
@@ -92,8 +93,13 @@ def verify_controller(code, webhook=False):
         projects[i]["tracked"] = track_per_project
         projects[i]["completed_amount"] = int(projects[i]["tracked"] / projects[i]["budget"] * 100) if not projects[i]["budget"] == None else 0
         projects[i]["completed_amount_grade"] = 0 if projects[i]["completed_amount"] < 50 else 1 if projects[i]["completed_amount"] <75 else 2
-        slack_message += "Project Name: {}  -  {} % \n".format(projects[i]["title"], projects[i]["completed_amount"] )
-    
+        slack_is_send = (webhook and (not str(read(project_id))==str(projects[i]["completed_amount_grade"]))) or (not webhook)
+        print(webhook, read(project_id), projects[i]["completed_amount_grade"], (webhook and (not str(read(project_id))==str(projects[i]["completed_amount_grade"]))),slack_is_send)
+        write(project_id, projects[i]["completed_amount_grade"])
+        if slack_is_send:
+            slack_message_empty = False
+            slack_message += "Project Name: {}  -  {} % \n ".format(projects[i]["title"], projects[i]["completed_amount"] )
+    slack_message +="---- FreshBooks Notification End ---- \n"
 
     if not webhook:
         for i in range(len(businesses)):
@@ -120,8 +126,9 @@ def verify_controller(code, webhook=False):
             headers = {'Authorization': 'Bearer {}'.format(access_token), 'Api-Version': 'alpha', 'Content-Type': 'application/json'}
             res = requests.post(url, data=json.dumps(payload), headers=headers)
             print(res.json())
-       
-    send_notification(slack_message)
+    print('--- slack message ---')
+    if not slack_message_empty:
+        send_notification(slack_message)
     body = """
 
     <!doctype html>

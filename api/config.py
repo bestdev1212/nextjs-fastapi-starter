@@ -12,7 +12,7 @@ class Settings:
     access_token_kname = "access_token"
     refresh_token_kname = "refresh_token"
     access_token_exired_at_kname = "access_token_exired_at"
-    slack_webhook_url = "https://hooks.slack.com/services/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"
+    slack_webhook_url = config("slack_webhook_url", cast=str)
     token_duration = 10*3600
 
 
