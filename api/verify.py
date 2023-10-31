@@ -77,6 +77,7 @@ def verify_controller(code, webhook=False):
     # print(businesses)
     projects = []
     tracks = []
+    
     for i in range(len(businesses)):
         _projects =freshBooksClient.projects.list(business_id=businesses[i].business_id)
         _tracks = freshBooksClient.time_entries.list(business_id=businesses[i].business_id)
