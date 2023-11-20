@@ -17,9 +17,11 @@ def send_notification(data):
         "text": data,
         "usename": "FreshBooks"
     }
+    
     message_json = json.dumps(message)
 
     # Send the POST request
     response = requests.post(webhook_url, data=message_json, headers={"Content-Type": "application/json"})
+    print(webhook_url)
     print('slack response')
     print(response.status_code, response.content)

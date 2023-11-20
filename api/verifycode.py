@@ -94,7 +94,7 @@ def verify_controller(code, webhook=False):
         track_per_project = sum([x["duration"] for x in tracks_per_project])
         projects[i]["tracked"] = track_per_project
         projects[i]["completed_amount"] = int(projects[i]["tracked"] / projects[i]["budget"] * 100) if not projects[i]["budget"] == None else 0
-        projects[i]["completed_amount_grade"] = 0 if projects[i]["completed_amount"] < 50 else 1 if projects[i]["completed_amount"] <75 else 2
+        projects[i]["completed_amount_grade"] = 0 if projects[i]["completed_amount"] < 50 else 1 if projects[i]["completed_amount"] <75 else 2 if projects[i]["completed_amount"] <100 else 3
         slack_is_send = (webhook and (not str(read(project_id))==str(projects[i]["completed_amount_grade"]))) or (not webhook)
         print(webhook, read(project_id), projects[i]["completed_amount_grade"], (webhook and (not str(read(project_id))==str(projects[i]["completed_amount_grade"]))),slack_is_send)
         write(project_id, projects[i]["completed_amount_grade"])
