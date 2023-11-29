@@ -100,7 +100,7 @@ def verify_controller(code, webhook=False):
         write(project_id, projects[i]["completed_amount_grade"])
         if slack_is_send:
             slack_message_empty = False
-            slack_message += "The budget for {}  is at  {} % out of {} \n ".format(projects[i]["title"], projects[i]["completed_amount"], projects[i]["budget"] )
+            slack_message += "The budget for {}  is at  {} % out of {} hrs\n ".format(projects[i]["title"], projects[i]["completed_amount"], int(projects[i]["budget"] / 3600) )
             # slack_message += "Project Name: {}  -  {} % \n ".format(projects[i]["title"], projects[i]["completed_amount"] )
     slack_message +="---- FreshBooks Notification End ---- \n"
 
