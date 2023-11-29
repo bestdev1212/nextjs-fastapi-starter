@@ -86,7 +86,8 @@ def verify_controller(code, webhook=False):
         tracks += _tracks.data["time_entries"]
 
     # print(tracks)
-    slack_message ="---- FreshBooks Notification Start ---- \n"
+    # slack_message ="---- FreshBooks Notification Start ---- \n"
+    slack_message ="\n"
     slack_message_empty = True
     for i in range(len(projects)):
         project_id = projects[i]["id"]
@@ -102,7 +103,8 @@ def verify_controller(code, webhook=False):
             slack_message_empty = False
             slack_message += "The budget for {}  is at  {} % out of {} hrs\n ".format(projects[i]["title"], projects[i]["completed_amount"], int(projects[i]["budget"] / 3600) )
             # slack_message += "Project Name: {}  -  {} % \n ".format(projects[i]["title"], projects[i]["completed_amount"] )
-    slack_message +="---- FreshBooks Notification End ---- \n"
+    slack_message +="\n"
+    # slack_message +="---- FreshBooks Notification End ---- \n"
 
     if not webhook:
         for i in range(len(businesses)):
